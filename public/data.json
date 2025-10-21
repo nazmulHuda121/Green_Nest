@@ -1,0 +1,74 @@
+[
+  {
+    "plantId": 1,
+    "plantName": "Snake Plant",
+    "category": "Air Purifier",
+    "price": 18,
+    "rating": 4.8,
+    "availableStock": 10,
+    "careLevel": "Easy",
+    "description": "A hardy plant that purifies indoor air and thrives in low light.",
+    "image": "https://images.unsplash.com/photo-1543750467-3fb545a9afc8",
+    "providerName": "UrbanGreen Studio"
+  },
+  {
+    "plantId": 2,
+    "plantName": "Peace Lily",
+    "category": "Flowering Plant",
+    "price": 22,
+    "rating": 4.7,
+    "availableStock": 8,
+    "careLevel": "Moderate",
+    "description": "Elegant white blooms and glossy green leaves make this plant a classic indoor beauty.",
+    "image": "https://images.unsplash.com/photos/close-up-photography-of-white-peace-lily-51NpHTXV5jg",
+    "providerName": "NatureNest Co."
+  },
+  {
+    "plantId": 3,
+    "plantName": "Aloe Vera",
+    "category": "Succulent",
+    "price": 15,
+    "rating": 4.6,
+    "availableStock": 12,
+    "careLevel": "Easy",
+    "description": "A low-maintenance succulent known for its healing gel and air-purifying qualities.",
+    "image": "https://images.unsplash.com/photo-1561037404-61e6c76b32f1",
+    "providerName": "Greenify Garden"
+  },
+  {
+    "plantId": 4,
+    "plantName": "Monstera Deliciosa",
+    "category": "Tropical Plant",
+    "price": 35,
+    "rating": 4.9,
+    "availableStock": 5,
+    "careLevel": "Moderate",
+    "description": "A stylish plant with split leaves, perfect for modern indoor spaces.",
+    "image": "https://images.unsplash.com/photo-1470167290877-7d6c9eff92f4",
+    "providerName": "Botaniq Home"
+  },
+  {
+    "plantId": 5,
+    "plantName": "ZZ Plant",
+    "category": "Low Light",
+    "price": 25,
+    "rating": 4.8,
+    "availableStock": 9,
+    "careLevel": "Easy",
+    "description": "A durable plant that thrives in neglect and low-light conditions.",
+    "image": "https://images.unsplash.com/photo-1603415526960-f30a89c4cc6b",
+    "providerName": "Leafy Lounge"
+  },
+  {
+    "plantId": 6,
+    "plantName": "Spider Plant",
+    "category": "Air Purifier",
+    "price": 16,
+    "rating": 4.7,
+    "availableStock": 14,
+    "careLevel": "Easy",
+    "description": "An attractive hanging plant that helps remove toxins from indoor air.",
+    "image": "https://images.unsplash.com/photo-1593883716606-bf0f8b1866e0",
+    "providerName": "PureLeaf Garden"
+  }
+]

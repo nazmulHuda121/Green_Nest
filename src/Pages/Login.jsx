@@ -1,75 +1,78 @@
+import { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <div className="min-h-[calc(100vh-20px)] flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 relative overflow-hidden">
-      {/* Animated glow orbs */}
-      <div className="absolute inset-0">
-        <div className="absolute w-72 h-72 bg-purple-400/30 rounded-full blur-xl top-10 left-10 animate-pulse"></div>
-        <div className="absolute w-72 h-72 bg-blue-400/30 rounded-full blur-xl bottom-10 right-10 animate-pulse"></div>
+    <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 relative overflow-hidden">
+      {/* background shapes */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-72 h-72 bg-green-300/30 rounded-full blur-3xl top-10 left-10 animate-pulse"></div>
+        <div className="absolute w-72 h-72 bg-blue-300/30 rounded-full blur-3xl bottom-10 right-10 animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 p-6 lg:p-10 text-white">
-        {/* Left section */}
-        <div className="max-w-lg text-center lg:text-left">
-          <h1 className="text-5xl font-extrabold drop-shadow-lg">
-            Welcome Back
-          </h1>
-          <p className="mt-4 text-lg text-white/80 leading-relaxed">
-            Sign in to continue your journey. Manage your account, explore new
-            features, and more.
-          </p>
-        </div>
+      {/* main content */}
+      <div className="w-full max-w-md backdrop-blur-xl bg-white/60 border border-white/40 shadow-2xl rounded-2xl p-8 relative z-10">
+        <h2 className="text-gray-700 text-center text-2xl font-semibold pb-5">
+          Login to Your Account
+        </h2>
+        <hr className="border-gray-300 " />
 
-        {/* Login card */}
-        <div className="w-full max-w-md backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8">
-          <form className="space-y-5">
-            <h2 className="text-2xl font-semibold mb-2 text-center text-white">
-              Sign In
-            </h2>
+        <form className="card-body">
+          <fieldset className="fieldset space-y-1">
+            <label className="label text-gray-700">Email</label>
+            <input
+              name="email"
+              type="email"
+              className="input input-bordered bg-white/70 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 w-full"
+              placeholder="Enter your email"
+              required
+            />
 
-            <div>
-              <label className="block text-sm mb-1">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="example@email.com"
-                className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </div>
-
+            <label className="label text-gray-700">Password</label>
             <div className="relative">
-              <label className="block text-sm mb-1">Password</label>
               <input
-                //   type={show ? 'text' : 'password'}
                 name="password"
-                placeholder="••••••••"
-                className="input input-bordered w-full bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                type={showPassword ? 'text' : 'password'}
+                className="input input-bordered bg-white/70 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 w-full"
+                placeholder="Enter your password"
+                required
               />
-              <span className="absolute right-[8px] top-[36px] cursor-pointer z-50">
-                {/* {show ? <FaEye /> : <IoEyeOff />} */}
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-[10px] cursor-pointer text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
 
-            <button className="hover:underline cursor-pointer" type="button">
-              Forget password?
-            </button>
+            <div className="text-right">
+              <button
+                type="button"
+                className="text-sm text-green-600 hover:text-green-700"
+              >
+                Forgot password?
+              </button>
+            </div>
 
-            <button type="submit" className="my-btn">
+            <button
+              type="submit"
+              className="btn mt-1 bg-green-500 hover:bg-green-600 text-white w-full"
+            >
               Login
             </button>
 
-            {/* Divider */}
-            <div className="flex items-center justify-center gap-2 my-2">
-              <div className="h-px w-16 bg-white/30"></div>
-              <span className="text-sm text-white/70">or</span>
-              <div className="h-px w-16 bg-white/30"></div>
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-px w-16 bg-gray-300"></div>
+              <span className="text-sm text-gray-500">or</span>
+              <div className="h-px w-16 bg-gray-300"></div>
             </div>
 
-            {/* Google Signin */}
             <button
               type="button"
-              className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
+              className="flex items-center justify-center gap-3 bg-white text-gray-700 px-5 py-2 rounded-lg w-full font-semibold border border-gray-200 hover:bg-gray-100 transition"
             >
               <img
                 src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -78,18 +81,18 @@ const Login = () => {
               />
               Continue with Google
             </button>
+          </fieldset>
+        </form>
 
-            <p className="text-center text-sm text-white/80 mt-3">
-              Don’t have an account?{' '}
-              <Link
-                to="/signup"
-                className="text-pink-300 hover:text-white underline"
-              >
-                Sign up
-              </Link>
-            </p>
-          </form>
-        </div>
+        <p className="text-center text-[14px] text-gray-700">
+          Don’t have an account?{' '}
+          <Link
+            to="/auth/register"
+            className="text-green-700 font-semibold hover:underline"
+          >
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );

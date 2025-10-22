@@ -4,6 +4,8 @@ import Home from '../Pages/Home';
 import Plants from '../Pages/Plants';
 import MyProfile from '../Pages/MyProfile';
 import Login from '../Pages/Login';
+import AuthLayOut from '../LayOuts/AuthLayOut';
+import Register from '../Pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -23,9 +25,19 @@ const router = createBrowserRouter([
         path: '/profile',
         element: <MyProfile></MyProfile>,
       },
+    ],
+  },
+  {
+    path: '/auth',
+    element: <AuthLayOut />,
+    children: [
       {
-        path: '/login',
-        Component: <Login />,
+        path: '/auth/login',
+        Component: Login,
+      },
+      {
+        path: '/auth/register',
+        Component: Register,
       },
     ],
   },

@@ -1,10 +1,13 @@
 import { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const { logedInUser } = use(AuthContext);
   const handleLogedInUser = (e) => {
@@ -14,8 +17,16 @@ const Login = () => {
     const password = form.password.value;
 
     logedInUser(email, password)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        toast('Login Succesfully Complete');
+        navigate(`${location.state ? location.state : '/profile'}`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
   };
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 relative overflow-hidden">

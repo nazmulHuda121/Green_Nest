@@ -2,15 +2,18 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { AuthContext } from './AuthContext';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Create a User...
   const createUser = (email, password) => {
@@ -21,11 +24,24 @@ const AuthProvider = ({ children }) => {
   const logedInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  // logOut User ...
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        toast('LogedOut Succesfully Complete');
+      })
+      .catch((error) => console.log(error));
+  };
+
   const authData = {
     createUser,
     user,
     setUser,
+    loading,
+    setLoading,
     logedInUser,
+    logOut,
   };
 
   return (

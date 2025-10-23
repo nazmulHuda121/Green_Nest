@@ -28,7 +28,11 @@ const PlantDetails = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-950 text-white flex flex-col items-center py-16 px-6">
       <div className="max-w-4xl w-full bg-gray-800/40 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden">
-        <img src={image} alt={plantName} className="w-full h-80 object-cover" />
+        <img
+          src={image}
+          alt={plantName}
+          className="w-full h-100 object-cover"
+        />
 
         <div className="p-6 space-y-3 text-center">
           <h2 className="text-3xl font-bold text-green-400">{plantName}</h2>

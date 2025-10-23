@@ -7,77 +7,73 @@ import {
   GiMapleLeaf,
   GiPlantSeed,
 } from 'react-icons/gi';
+import { useLoaderData } from 'react-router';
+import IndoorPlant from '../Components/HomeComponents/IndoorPlant';
+import ExpartTeam from '../Components/HomeComponents/ExpartTeam';
+import PlantCareTips from '../Components/HomeComponents/PlantCareTips';
+
+const tips = [
+  {
+    id: 1,
+    title: 'Water Regularly',
+    desc: 'Keep soil moist but not soggy. Water every 2-3 days.',
+  },
+  {
+    id: 2,
+    title: 'Sunlight Needs',
+    desc: 'Most indoor plants love bright, indirect sunlight.',
+  },
+  {
+    id: 3,
+    title: 'Fertilize Monthly',
+    desc: 'Use organic fertilizer once a month for growth.',
+  },
+];
+
+const experts = [
+  {
+    id: 1,
+    name: 'Emma Green',
+    role: 'Indoor Plant Specialist',
+    img: 'https://media.istockphoto.com/id/1181196053/photo/smiling-indian-young-woman-sales-professional-arms-crossed-looking-at-camera-isolated-on-grey.webp?a=1&b=1&s=612x612&w=0&k=20&c=Hn_k8Pa5Zh8MU1oVw-iOZUpyVhyCab5uGEwLpADRZP4=',
+  },
+
+  {
+    id: 2,
+    name: 'Olivia Bloom',
+    role: 'Plant Therapist',
+    img: 'https://images.unsplash.com/photo-1615109398623-88346a601842?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900',
+  },
+  {
+    id: 3,
+    name: 'Noah Leaf',
+    role: 'Eco Decor Designer',
+    img: 'https://images.unsplash.com/photo-1481214110143-ed630356e1bb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8d29tZW58ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900',
+  },
+];
+
+const decorIdeas = [
+  {
+    id: 1,
+    title: 'Minimalist Green Corner',
+    img: 'https://images.unsplash.com/photo-1632120953531-1654025d5881?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGRlY29yJTIwaWRlYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900',
+  },
+  {
+    id: 2,
+    title: 'Hanging Plant Heaven',
+    img: 'https://images.unsplash.com/photo-1665954551919-604ea46f2958?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTExfHxkZWNvciUyMGlkZWF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900',
+  },
+  {
+    id: 3,
+    title: 'Desk Garden Setup',
+    img: 'https://images.unsplash.com/photo-1760120482099-3fd0983b1b60?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTY5fHxkZWNvciUyMGlkZWF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900',
+  },
+];
 
 const Home = () => {
-  // fake JSON data
-  const topPlants = [
-    {
-      id: 1,
-      name: 'Aloe Vera',
-      price: '$25',
-      rating: '4.8',
-      img: '/plants/aloe.jpg',
-    },
-    {
-      id: 2,
-      name: 'Snake Plant',
-      price: '$30',
-      rating: '4.6',
-      img: '/plants/snake.jpg',
-    },
-    {
-      id: 3,
-      name: 'Peace Lily',
-      price: '$22',
-      rating: '4.9',
-      img: '/plants/lily.jpg',
-    },
-  ];
-
-  const tips = [
-    {
-      id: 1,
-      title: 'Water Regularly',
-      desc: 'Keep soil moist but not soggy. Water every 2-3 days.',
-    },
-    {
-      id: 2,
-      title: 'Sunlight Needs',
-      desc: 'Most indoor plants love bright, indirect sunlight.',
-    },
-    {
-      id: 3,
-      title: 'Fertilize Monthly',
-      desc: 'Use organic fertilizer once a month for growth.',
-    },
-  ];
-
-  const experts = [
-    {
-      id: 1,
-      name: 'Emma Green',
-      role: 'Indoor Plant Specialist',
-      img: '/experts/expert1.jpg',
-    },
-    {
-      id: 2,
-      name: 'Noah Leaf',
-      role: 'Eco Decor Designer',
-      img: '/experts/expert2.jpg',
-    },
-    {
-      id: 3,
-      name: 'Olivia Bloom',
-      role: 'Plant Therapist',
-      img: '/experts/expert3.jpg',
-    },
-  ];
-
-  const decorIdeas = [
-    { id: 1, title: 'Minimalist Green Corner', img: '/decor/decor1.jpg' },
-    { id: 2, title: 'Hanging Plant Heaven', img: '/decor/decor2.jpg' },
-    { id: 3, title: 'Desk Garden Setup', img: '/decor/decor3.jpg' },
-  ];
+  const plants = useLoaderData();
+  console.log(plants);
+  const topRated = plants.filter((plant) => plant.rating >= 4.7);
 
   return (
     <div className="bg-gradient-to-r from-green-200 via-gray-300 to-purple-300 text-gray-700">
@@ -125,25 +121,8 @@ const Home = () => {
           Rated Indoor Plants
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {topPlants.map((plant) => (
-            <div
-              key={plant.id}
-              className="backdrop-blur-lg bg-white/60 rounded-2xl shadow-lg border border-white/40 p-6 hover:scale-105 transition-transform duration-300"
-            >
-              <img
-                src={plant.img}
-                alt={plant.name}
-                className="rounded-xl w-full h-56 object-cover"
-              />
-              <h3 className="text-xl font-semibold mt-4 text-gray-800">
-                {plant.name}
-              </h3>
-              <p className="text-green-700 font-semibold">{plant.price}</p>
-              <p className="text-yellow-500">⭐ {plant.rating}</p>
-              <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
-                View Details
-              </button>
-            </div>
+          {topRated.map((plant) => (
+            <IndoorPlant plant={plant} key={plant.plantId}></IndoorPlant>
           ))}
         </div>
       </section>
@@ -156,15 +135,7 @@ const Home = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {tips.map((tip) => (
-            <div
-              key={tip.id}
-              className="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/40"
-            >
-              <h3 className="text-xl font-semibold text-green-700 mb-2">
-                {tip.title}
-              </h3>
-              <p className="text-gray-600">{tip.desc}</p>
-            </div>
+            <PlantCareTips tip={tip} key={tip.id} />
           ))}
         </div>
       </section>
@@ -176,21 +147,8 @@ const Home = () => {
           Green Experts
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {experts.map((ex) => (
-            <div
-              key={ex.id}
-              className="bg-white/60 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg p-6 text-center"
-            >
-              <img
-                src={ex.img}
-                alt={ex.name}
-                className="w-32 h-32 mx-auto rounded-full object-cover"
-              />
-              <h3 className="text-xl font-semibold mt-4 text-gray-800">
-                {ex.name}
-              </h3>
-              <p className="text-green-600">{ex.role}</p>
-            </div>
+          {experts.map((expart) => (
+            <ExpartTeam expart={expart} key={expart.id} />
           ))}
         </div>
       </section>

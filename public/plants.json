@@ -1,0 +1,74 @@
+[
+  {
+    "plantId": 1,
+    "plantName": "Rubber Plant",
+    "category": "Air Purifier",
+    "price": 25,
+    "rating": 4.6,
+    "availableStock": 9,
+    "careLevel": "Easy",
+    "description": "The Rubber Plant is a stylish indoor plant with broad, glossy leaves that thrive in medium light. It removes toxins and adds a modern touch to your interior decor.",
+    "image": "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cnViYmVyJTIwdHJlZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
+    "providerName": "EverGreen Living"
+  },
+  {
+    "plantId": 2,
+    "plantName": "Peace Lily",
+    "category": "Flowering Indoor",
+    "price": 22,
+    "rating": 4.9,
+    "availableStock": 8,
+    "careLevel": "Medium",
+    "description": "Elegant white blooms and glossy leaves that brighten any space.",
+    "image": "https://images.unsplash.com/photo-1721537107470-0bc7e2d368f3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlseSUyMGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
+    "providerName": "LeafyComfort Co."
+  },
+  {
+    "plantId": 3,
+    "plantName": "Fiddle Leaf Fig",
+    "category": "Statement Plant",
+    "price": 45,
+    "rating": 4.5,
+    "availableStock": 5,
+    "careLevel": "Medium-Hard",
+    "description": "Tall, dramatic leaves that make a bold statement in your home.",
+    "image": "https://images.unsplash.com/photo-1545239705-1564e58b9e4a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlkZGxlJTIwbGVhZiUyMGZpZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
+    "providerName": "GreenCanvas Interiors"
+  },
+  {
+    "plantId": 4,
+    "plantName": "Aloe Vera",
+    "category": "Succulent",
+    "price": 25,
+    "rating": 4.7,
+    "availableStock": 12,
+    "careLevel": "Easy",
+    "description": "Low-maintenance succulent with medicinal benefits and fresh green leaves.",
+    "image": "https://plus.unsplash.com/premium_photo-1688045553706-e2c642bfa410?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWxvZSUyMHZlcmElMjBwbGFudHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
+    "providerName": "SucculentHaven"
+  },
+  {
+    "plantId": 5,
+    "plantName": "Monstera Deliciosa",
+    "category": "Tropical Indoor",
+    "price": 38,
+    "rating": 4.6,
+    "availableStock": 6,
+    "careLevel": "Medium",
+    "description": "Iconic split leaves that bring a tropical touch to your living space.",
+    "image": "https://plus.unsplash.com/premium_photo-1673814841195-c1304884f9c6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fG1vbnN0ZXJhJTIwZGVsaWNpb3NhfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900",
+    "providerName": "TropiLeaf Designs"
+  },
+  {
+    "plantId": 6,
+    "plantName": "Spider Plant",
+    "category": "Beginner Friendly",
+    "price": 20,
+    "rating": 4.8,
+    "availableStock": 15,
+    "careLevel": "Easy",
+    "description": "Vibrant green and white leaves; great for beginners and hanging baskets.",
+    "image": "https://images.unsplash.com/photo-1610551724444-5fb527b5ad20?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fFNwaWRlciUyMFBsYW50fGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900",
+    "providerName": "HangingGreen Studios"
+  }
+]

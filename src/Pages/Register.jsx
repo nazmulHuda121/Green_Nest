@@ -1,6 +1,29 @@
+import { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../Provider/AuthProvider/AuthContext';
+import { toast } from 'react-toastify';
 
 const Register = () => {
+  const { createUser } = use(AuthContext);
+
+  const handleRegisterUser = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        toast('User created:', user);
+        form.reset();
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast(errorMessage);
+      });
+  };
+
   return (
     <div>
       <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 relative overflow-hidden">
@@ -17,7 +40,7 @@ const Register = () => {
           </h2>
           <hr className="border-gray-300" />
 
-          <form className="card-body">
+          <form onSubmit={handleRegisterUser} className="card-body">
             <fieldset className="fieldset space-y-1">
               <label className="label text-gray-700">Your Name</label>
               <input

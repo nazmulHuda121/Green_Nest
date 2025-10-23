@@ -9,14 +9,14 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { logedInUser } = use(AuthContext);
+  const { loginUser } = use(AuthContext);
   const handleLogedInUser = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    logedInUser(email, password)
+    loginUser(email, password)
       .then((res) => {
         const user = res.user;
         console.log(user);

@@ -1,7 +1,9 @@
 import { useLoaderData, useParams } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider/AuthContext';
+import { use } from 'react';
 
 const PlantDetails = () => {
+  const { loading } = use(AuthContext);
   const { id } = useParams();
   const plants = useLoaderData();
   console.log(typeof id, plants);
@@ -20,10 +22,10 @@ const PlantDetails = () => {
   } = filteredPlant;
   console.log(plantName);
 
-  //   if (loading)
-  //     return (
-  //       <p className="text-center py-20 text-gray-400">Loading details...</p>
-  //     );
+  if (loading)
+    return (
+      <p className="text-center py-20 text-gray-400">Loading details...</p>
+    );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-950 text-white flex flex-col items-center py-16 px-6">

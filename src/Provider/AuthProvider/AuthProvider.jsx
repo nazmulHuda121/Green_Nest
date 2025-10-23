@@ -1,56 +1,67 @@
+import { useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
-  getAuth,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  updateProfile,
 } from 'firebase/auth';
-import app from '../../firebase/firebase.config';
 import { AuthContext } from './AuthContext';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { getAuth } from 'firebase/auth';
+import app from '../../firebase/firebase.config';
 
 const auth = getAuth(app);
-
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Create a User...
+  const googleProvider = new GoogleAuthProvider();
+
+  // Create User
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // LogedIn User....
-  const logedInUser = (email, password) => {
+  // Login User
+  const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // logOut User ...
-  const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        toast('LogedOut Succesfully Complete');
-      })
-      .catch((error) => console.log(error));
+  // Logout
+  const logOut = () => signOut(auth);
+
+  // Google Login
+  const googleLogin = () => signInWithPopup(auth, googleProvider);
+
+  // Update Profile
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
   };
 
-  // User observation using onAuthState
+  // Auth State Change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
   const authData = {
-    createUser,
     user,
-    setUser,
     loading,
-    setLoading,
-    logedInUser,
+    createUser,
+    loginUser,
     logOut,
+    googleLogin,
+    updateUserProfile,
   };
 
   return (

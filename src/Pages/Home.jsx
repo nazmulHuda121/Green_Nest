@@ -11,6 +11,7 @@ import { useLoaderData } from 'react-router';
 import IndoorPlant from '../Components/HomeComponents/IndoorPlant';
 import ExpartTeam from '../Components/HomeComponents/ExpartTeam';
 import PlantCareTips from '../Components/HomeComponents/PlantCareTips';
+import { useEffect, useState } from 'react';
 
 const tips = [
   {

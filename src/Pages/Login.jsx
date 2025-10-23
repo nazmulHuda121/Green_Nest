@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { AuthContext } from '../Provider/AuthProvider/AuthContext';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
+  const { logedInUser } = use(AuthContext);
+  const handleLogedInUser = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    logedInUser(email, password)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 relative overflow-hidden">
       {/* background shapes */}
@@ -20,7 +32,7 @@ const Login = () => {
         </h2>
         <hr className="border-gray-300 " />
 
-        <form className="card-body">
+        <form onSubmit={handleLogedInUser} className="card-body">
           <fieldset className="fieldset space-y-1">
             <label className="label text-gray-700">Email</label>
             <input

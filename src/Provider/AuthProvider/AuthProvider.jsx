@@ -1,12 +1,13 @@
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { AuthContext } from './AuthContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const auth = getAuth(app);
@@ -33,6 +34,14 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => console.log(error));
   };
+
+  // User observation using onAuthState
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const authData = {
     createUser,

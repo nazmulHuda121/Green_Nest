@@ -15,7 +15,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        toast('User created:', user);
+        toast('User created', user);
         form.reset();
       })
       .catch((error) => {

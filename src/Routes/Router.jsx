@@ -8,6 +8,7 @@ import AuthLayOut from '../LayOuts/AuthLayOut';
 import PlantDetails from '../Pages/PlantDetails';
 import PrivateRoute from './PrivateRoute';
 import Signup from '../Pages/Signup';
+import Loading from '../Pages/Loading';
 
 const router = createBrowserRouter([
   {
@@ -18,13 +19,13 @@ const router = createBrowserRouter([
         index: true,
         element: <Home> </Home>,
         loader: () => fetch('/plants.json'),
-        hydrateFallbackElement: true,
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: '/plants',
         element: <Plants></Plants>,
         loader: () => fetch('/plants.json'),
-        hydrateFallbackElement: true,
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: '/plant-details/:id',
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () => fetch('/plants.json'),
+        hydrateFallbackElement: <Loading />,
       },
 
       {

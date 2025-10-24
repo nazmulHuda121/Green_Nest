@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = use(AuthContext);
   const location = useLocation();
 
-  // Show loading indicator while Firebase checks user status
+  // Show loading
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center text-green-400 text-xl">
@@ -16,12 +16,10 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  // If no user → redirect to login
+  // If no user -> redirect to login
   if (!user) {
     toast.info('Please login to continue');
-    return (
-      <Navigate to="/auth/login" state={{ from: location.pathname }} replace />
-    );
+    return <Navigate to="/auth/login" state={location.pathname}></Navigate>;
   }
 
   return children;

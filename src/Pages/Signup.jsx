@@ -2,9 +2,11 @@ import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider/AuthContext';
 import { Link, useNavigate } from 'react-router';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -81,18 +83,20 @@ const Signup = () => {
               />
 
               <label className="label text-gray-700">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input input-bordered bg-white/70 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
-                placeholder="Password"
-                required
-              />
-
-              <div>
-                <a className="link link-hover text-sm text-green-600">
-                  Forgot password?
-                </a>
+              <div className="relative">
+                <input
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  className="input input-bordered bg-white/70 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  placeholder="Password"
+                  required
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-3 right-7 cursor-pointer z-2 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
               </div>
 
               <button className="btn mt-4 bg-green-500 hover:bg-green-600 text-white w-full">

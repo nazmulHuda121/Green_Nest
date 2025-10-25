@@ -6,28 +6,40 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation();
+  const { loginUser, googleLogin } = use(AuthContext);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
-  const { loginUser } = use(AuthContext);
-  const handleLogedInUser = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     loginUser(email, password)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
-        toast('Login Succesfully Complete');
-        navigate(`${location.state ? location.state : '/profile'}`);
+      .then(() => {
+        toast.success('Login successful!');
+        navigate(from, { replace: true });
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
+      .catch((err) => {
+        setError(err.message);
+        toast.error('Login failed! Check your credentials.');
       });
   };
+
+  const handleGoogle = () => {
+    googleLogin()
+      .then(() => {
+        toast.success('Logged in with Google!');
+        navigate(from, { replace: true });
+      })
+      .catch(() => toast.error('Google login failed.'));
+  };
+
+  // Forgate Password
+  const handleForgetPasword = () => {};
+
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 relative overflow-hidden">
       {/* background shapes */}
@@ -43,7 +55,7 @@ const Login = () => {
         </h2>
         <hr className="border-gray-300 " />
 
-        <form onSubmit={handleLogedInUser} className="card-body">
+        <form onSubmit={handleLogin} className="card-body">
           <fieldset className="fieldset space-y-1">
             <label className="label text-gray-700">Email</label>
             <input
@@ -65,7 +77,7 @@ const Login = () => {
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[10px] cursor-pointer text-gray-500 hover:text-gray-700"
+                className="absolute right-4 top-3.5 cursor-pointer text-gray-500 hover:text-gray-700 z-2"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
@@ -73,6 +85,7 @@ const Login = () => {
 
             <div className="text-right">
               <button
+                onClick={handleForgetPasword}
                 type="button"
                 className="text-sm text-green-600 hover:text-green-700"
               >
@@ -94,8 +107,9 @@ const Login = () => {
             </div>
 
             <button
+              onClick={handleGoogle}
               type="button"
-              className="flex items-center justify-center gap-3 bg-white text-gray-700 px-5 py-2 rounded-lg w-full font-semibold border border-gray-200 hover:bg-gray-100 transition"
+              className="flex items-center justify-center gap-3 bg-white text-gray-700 px-5 py-2 rounded-lg w-full font-semibold border border-gray-200 hover:bg-gray-100 transition cursor-pointer"
             >
               <img
                 src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -106,6 +120,9 @@ const Login = () => {
             </button>
           </fieldset>
         </form>
+        {error && (
+          <p className="text-red-500 text-center text-sm mt-2">{error}</p>
+        )}
 
         <p className="text-center text-[14px] text-gray-700">
           Don’t have an account?{' '}

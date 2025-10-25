@@ -32,10 +32,16 @@ const AuthProvider = ({ children }) => {
   };
 
   // Logout
-  const logOut = () => signOut(auth);
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
   // Google Login
-  const googleLogin = () => signInWithPopup(auth, googleProvider);
+  const googleLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
   // Update Profile
   const updateUserProfile = (name, photo) => {

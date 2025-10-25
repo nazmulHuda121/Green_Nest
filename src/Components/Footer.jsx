@@ -5,7 +5,7 @@ import { SiFacebook } from 'react-icons/si';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-green-950 p-12">
+    <footer className="w-full p-12 bg-gradient-to-b from-green-950 via-black to-green-950">
       <div className="flex flex-col items-center gap-6">
         {/* Links */}
         <nav className="flex flex-wrap gap-8 justify-center">

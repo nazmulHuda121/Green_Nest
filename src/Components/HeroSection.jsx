@@ -39,7 +39,7 @@ const HeroSection = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <motion.div
-              className="h-[500px] flex flex-col justify-center items-center text-center bg-[url('/hero/hero1.jpg')] bg-cover bg-center text-white"
+              className="h-[500px] flex flex-col justify-center items-center text-center bg-[url('/hero/hero1.jpg')] bg-cover bg-center text-white overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}

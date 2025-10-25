@@ -8,7 +8,7 @@ const NavBar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        toast('LogOut Succesfully');
+        toast('Logout Succesfully');
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +77,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-white/70 backdrop-blur-lg rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-white/40"
+              className="menu menu-sm dropdown-content bg-white/70 backdrop-blur-lg rounded-box  mt-3 w-52 p-2 shadow-lg border border-white/40"
             >
               {links}
             </ul>
@@ -97,13 +97,11 @@ const NavBar = () => {
         {/* right button */}
         <div className="navbar-end">
           <div className="login-btn flex gap-5">
-            {/* <img
-            className="w-12 p-1 border rounded-full"
-            src={`${user ? user.photoURL : userImg}`}
-            alt=""
-          /> */}
             {user ? (
-              <button onClick={handleLogOut} className="btn btn-primary px-10 ">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-secondary px-10 "
+              >
                 Logout
               </button>
             ) : (

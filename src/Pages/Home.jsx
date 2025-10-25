@@ -6,10 +6,11 @@ import PlantCareTips from '../Components/HomeComponents/PlantCareTips';
 import { useEffect, useState } from 'react';
 import EcoDecorIdea from '../Components/HomeComponents/EcoDecorIdea';
 import HeroSection from '../Components/HeroSection';
+import PlantOfTheWeek from '../Components/HomeComponents/PlantOfTheWeek';
 
 const Home = () => {
   const plants = useLoaderData();
-  console.log(plants);
+  // console.log(plants);
   const topRated = plants.filter((plant) => plant.rating >= 4.7);
 
   // For Extra Optional section
@@ -41,6 +42,9 @@ const Home = () => {
           ))}
         </div>
       </section>
+
+      {/* Plant of the Week */}
+      <PlantOfTheWeek />
 
       {/* PLANT CARE TIPS */}
       <PlantCareTips tips={tips} key={tips.id}></PlantCareTips>

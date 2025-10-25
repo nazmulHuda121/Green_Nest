@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   updateProfile,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { AuthContext } from './AuthContext';
 import { getAuth } from 'firebase/auth';
@@ -51,6 +52,12 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  // Forgate password
+  const sendPassResetEmailFunc = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+
   // Auth State Change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -68,6 +75,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     googleLogin,
     updateUserProfile,
+    sendPassResetEmailFunc,
   };
 
   return (

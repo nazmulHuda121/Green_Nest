@@ -1,4 +1,4 @@
-import { Navigate, useLoaderData, useParams } from 'react-router';
+import { Navigate, useLoaderData, useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider/AuthContext';
 import { use } from 'react';
 import { FaRegStar, FaStore } from 'react-icons/fa';
@@ -10,6 +10,7 @@ const PlantDetails = () => {
   const { loading, user } = use(AuthContext);
   const { id } = useParams();
   const plants = useLoaderData();
+  const navigate = useNavigate();
   // console.log(typeof id, plants);
   if (!user) {
     return (
@@ -50,6 +51,10 @@ const PlantDetails = () => {
     e.preventDefault();
     toast.success('Consultation booked successfully!');
     setFormData({ name: '', email: '' }); // form clear
+
+    setTimeout(() => {
+      navigate('/plants');
+    }, 1000);
   };
 
   return (
@@ -108,7 +113,7 @@ const PlantDetails = () => {
           />
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 transition font-semibold py-2 rounded-lg shadow-md"
+            className="w-full bg-green-600 hover:bg-green-700 transition font-semibold py-2 rounded-lg shadow-md cursor-pointer"
           >
             Book Now
           </button>

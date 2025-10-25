@@ -1,4 +1,4 @@
-import { use, useState } from 'react';
+import { use, useRef, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider/AuthContext';
@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser, googleLogin } = use(AuthContext);
+  const { loginUser, googleLogin, sendPassResetEmailFunc } = use(AuthContext);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,9 +36,26 @@ const Login = () => {
       })
       .catch(() => toast.error('Google login failed.'));
   };
+  const emailRef = useRef(null);
 
   // Forgate Password
-  const handleForgetPasword = () => {};
+  const handleForgetPassword = (e) => {
+    e.preventDefault();
+    const email = emailRef?.current && emailRef?.current.value.trim();
+    console.log(email);
+    if (!email) {
+      toast.error('Please enter your email first!');
+      return;
+    }
+
+    sendPassResetEmailFunc(email)
+      .then(() => {
+        toast.success('Password reset email sent! Check your Gmail inbox.');
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
+  };
 
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 relative overflow-hidden">
@@ -60,6 +77,7 @@ const Login = () => {
             <label className="label text-gray-700">Email</label>
             <input
               name="email"
+              ref={emailRef}
               type="email"
               className="input input-bordered bg-white/70 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 w-full"
               placeholder="Enter your email"
@@ -85,9 +103,9 @@ const Login = () => {
 
             <div className="text-right">
               <button
-                onClick={handleForgetPasword}
+                onClick={handleForgetPassword}
                 type="button"
-                className="text-sm text-green-600 hover:text-green-700"
+                className="underline cursor-pointer text-sm text-green-600 hover:text-green-700"
               >
                 Forgot password?
               </button>

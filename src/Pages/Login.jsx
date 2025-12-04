@@ -31,7 +31,8 @@ const Login = () => {
 
   const handleGoogle = () => {
     googleLogin()
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         toast.success('Logged in with Google!');
         navigate(from, { replace: true });
       })

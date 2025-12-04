@@ -56,19 +56,6 @@ const NavBar = () => {
 
       <li>
         <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            isActive
-              ? 'text-green-600 font-semibold'
-              : 'text-gray-700 hover:text-green-600'
-          }
-        >
-          Contact
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
           to="/support"
           className={({ isActive }) =>
             isActive
@@ -79,6 +66,7 @@ const NavBar = () => {
           Support
         </NavLink>
       </li>
+
       {user && (
         <li>
           <NavLink
@@ -97,11 +85,11 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="bg-[#f1efec] backdrop-blur-xl shadow-sm border-b border-gray-200 w-full">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <nav className="bg-gray-100 backdrop-blur-xl shadow-sm border-b border-gray-200 w-full">
+      <div className="max-w-7xl mx-auto lg:px-0 px-6 py-2 flex items-center justify-between">
         {/* Logo */}
         <Link to="/">
-          <img src="/logo.png" alt="Logo" className="w-32" />
+          <img src="/logo.png" alt="Logo" className="w-28" />
         </Link>
 
         {/* Desktop Menu */}
@@ -129,8 +117,11 @@ const NavBar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className="lg:hidden dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost p-0">
+        <div className="lg:hidden dropdown dropdown-end w-full">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost p-0 w-full flex justify-end"
+          >
             <svg
               className="w-8 h-8 text-gray-700"
               fill="none"
@@ -144,23 +135,23 @@ const NavBar = () => {
 
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-4 p-4 shadow-lg bg-white rounded-lg w-60 border"
+            className="menu menu-sm dropdown-content mt-2 p-6 shadow-lg bg-white rounded-none w-full left-0 border-t border-gray-200"
           >
             {navLinks}
 
-            <hr className="my-2" />
+            <hr className="my-4" />
 
             {user ? (
               <button
                 onClick={handleLogOut}
-                className="px-4 py-2 bg-green-600 text-white rounded-md mt-2 w-full text-center"
+                className="px-4 py-3 bg-green-600 text-white w-full rounded-md text-center font-medium"
               >
                 Logout
               </button>
             ) : (
               <Link
                 to="/auth/login"
-                className="px-4 py-2 bg-green-600 text-white rounded-md mt-2 w-full text-center"
+                className="px-4 py-3 bg-green-600 text-white w-full rounded-md text-center font-medium"
               >
                 Login
               </Link>

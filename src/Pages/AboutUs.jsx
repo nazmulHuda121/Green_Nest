@@ -1,9 +1,10 @@
 import { FaLeaf, FaUsers, FaHandsHelping } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import CTA from '../Components/HomeComponents/CTA';
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-green-100 via-gray-100 to-purple-100 text-gray-800">
+    <div className="min-h-screen  text-gray-800">
       {/* HERO SECTION */}
       <section className="relative bg-green-50 py-24 px-6 md:px-12 text-center rounded-b-3xl shadow-lg">
         <motion.h1
@@ -109,21 +110,7 @@ const AboutUs = () => {
           ))}
         </div>
       </section>
-
-      {/* CTA SECTION */}
-      <section className="py-16 px-6 md:px-12 text-center bg-green-100 rounded-3xl shadow-inner">
-        <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-4">
-          Join Our Green Family
-        </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto mb-6">
-          Be a part of our journey to bring nature into every home. Discover
-          plants, tips, and eco-friendly ideas for a healthier indoor
-          environment.
-        </p>
-        <button className="bg-green-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-green-700 transition transform hover:scale-105">
-          Explore Now
-        </button>
-      </section>
+      <CTA />
     </div>
   );
 };

@@ -18,7 +18,7 @@ const IndoorPlant = ({ plant }) => {
 
       {/* Content */}
       <div className="p-5 flex flex-col justify-between">
-        <div>
+        <div className="flex items-center justify-between">
           <h3 className="text-lg md:text-xl font-semibold text-gray-800 truncate">
             {plantName}
           </h3>

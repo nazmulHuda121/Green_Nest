@@ -18,6 +18,7 @@ const PlantDetails = () => {
   const { loading } = useContext(AuthContext);
   const { id } = useParams();
   const plants = useLoaderData();
+  const navigate = useNavigate();
 
   const plant = plants.find((p) => p.plantId === Number(id));
   if (!plant)

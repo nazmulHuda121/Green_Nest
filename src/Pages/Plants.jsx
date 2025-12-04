@@ -20,7 +20,7 @@ const Plants = () => {
         </div>
 
         {/* Plants Grid */}
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-4 gap-8 lg:max-w-7xl mx-auto">
           {plants.map((plant) => (
             <IndoorPlant plant={plant} key={plant.plantId}></IndoorPlant>
           ))}

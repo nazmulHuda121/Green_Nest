@@ -1,5 +1,6 @@
 // components/CTA.js
 import { motion } from 'framer-motion';
+import { Link } from 'react-router';
 
 const CTA = ({
   title = 'Join Our Green Family',
@@ -9,7 +10,7 @@ const CTA = ({
 }) => {
   return (
     <motion.section
-      className="py-16 px-6 md:px-12 my-12 text-center bg-green-100 rounded-3xl shadow-inner max-w-7xl mx-auto"
+      className="py-16 px-6 md:px-12 my-12 text-center bg-green-100 lg:rounded-3xl shadow-inner lg:max-w-7xl lg:mx-auto "
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -18,12 +19,13 @@ const CTA = ({
         {title}
       </h2>
       <p className="text-gray-700 max-w-2xl mx-auto mb-6">{description}</p>
-      <button
+      <Link
+        to={'/plants'}
         onClick={buttonAction}
         className="bg-green-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-green-700 transition transform hover:scale-105"
       >
         {buttonText}
-      </button>
+      </Link>
     </motion.section>
   );
 };

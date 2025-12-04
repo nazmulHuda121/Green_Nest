@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/autoplay';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { motion } from 'framer-motion';
 import { GiChestnutLeaf, GiMonsteraLeaf } from 'react-icons/gi';
 
 const HeroSection = () => {
@@ -9,52 +10,80 @@ const HeroSection = () => {
     {
       id: 1,
       title: 'Grow Fresh. Live Green.',
-      subtitle: 'Bringing nature to your home with love',
-      icon: <GiMonsteraLeaf />,
+      desc: 'Bringing nature to your home with love',
+      img: 'https://plus.unsplash.com/premium_photo-1669865741988-e7e8f9505076?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTgxfHx0cmVlfGVufDB8fDB8fHww',
+      icon: <GiMonsteraLeaf className="inline-block ml-2" />,
+      btn: 'Shop Now',
     },
     {
       id: 2,
       title: 'Your Space. Your Green Style.',
-      subtitle: 'Discover beauty in every leaf',
-      icon: <GiChestnutLeaf />,
+      desc: 'Discover beauty in every leaf',
+      img: 'https://images.unsplash.com/photo-1510325805092-2951ab330b7d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTgyfHx0cmVlfGVufDB8fDB8fHww',
+      icon: <GiChestnutLeaf className="inline-block ml-2" />,
+      btn: 'Explore Plants',
     },
     {
       id: 3,
       title: 'Care for Nature, Care for Life.',
-      subtitle: 'Let green inspire your soul',
-      icon: <GiMonsteraLeaf />,
+      desc: 'Let green inspire your soul',
+      img: 'https://images.unsplash.com/photo-1759496607068-f2892afdaf23?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTcyfHx0cmVlJTIwcGxhbnRpbmd8ZW58MHx8MHx8fDA%3D',
+      icon: <GiMonsteraLeaf className="inline-block ml-2" />,
+      btn: 'Get Started',
     },
   ];
 
   return (
-    <section className="relative w-full">
+    <div className="relative w-full h-[60vh] md:h-[70vh]">
       <Swiper
-        spaceBetween={30}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{ delay: 3500, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
         modules={[Autoplay, Pagination]}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        loop={true}
+        className="w-full h-full"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <motion.div
-              className="h-[500px] flex flex-col justify-center items-center text-center bg-[url('/hero/hero1.jpg')] bg-cover bg-center text-white overflow-hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
+            <div
+              className="relative w-full h-[60vh] md:h-[70vh] bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.img})` }}
             >
-              <h1 className="text-purple-700 text-4xl md:text-6xl font-bold drop-shadow-lg">
-                Grow Fresh. Live Green.
-              </h1>
-              <p className="text-green-600 mt-4 text-lg md:text-xl flex items-center gap-1">
-                Bringing nature to your home with love <GiMonsteraLeaf />
-              </p>
-            </motion.div>
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+
+              {/* Content */}
+              <div className="relative z-10 flex flex-col justify-center h-full px-4 md:px-20 text-white max-w-xl">
+                <motion.h1
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-3xl md:text-5xl font-extrabold leading-tight mb-2"
+                >
+                  {slide.title}
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-base md:text-lg text-gray-200 mb-3 flex items-center"
+                >
+                  {slide.desc} {slide.icon}
+                </motion.p>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-5 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-md w-fit"
+                >
+                  {slide.btn}
+                </motion.button>
+              </div>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </section>
+    </div>
   );
 };
 

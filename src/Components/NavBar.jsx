@@ -1,115 +1,171 @@
-import { use } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router';
+import { use } from 'react';
 import { AuthContext } from '../Provider/AuthProvider/AuthContext';
 import { toast } from 'react-toastify';
 
 const NavBar = () => {
   const { user, logOut } = use(AuthContext);
+
   const handleLogOut = () => {
     logOut()
-      .then(() => {
-        toast('Logout Succesfully');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => toast('Logged out successfully'))
+      .catch((err) => console.log(err));
   };
-  const links = (
+
+  const navLinks = (
     <>
-      <li className="text-[18px]">
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? 'text-green-500 font-semibold' : 'text-gray-700'
+            isActive
+              ? 'text-green-600 font-semibold'
+              : 'text-gray-700 hover:text-green-600'
           }
         >
           Home
         </NavLink>
       </li>
-      <li className="text-[18px]">
+
+      <li>
         <NavLink
           to="/plants"
           className={({ isActive }) =>
-            isActive ? 'text-green-500 font-semibold' : 'text-gray-700'
+            isActive
+              ? 'text-green-600 font-semibold'
+              : 'text-gray-700 hover:text-green-600'
           }
         >
-          Plants
+          All Items
         </NavLink>
       </li>
-      <li className="text-[18px]">
+
+      <li>
         <NavLink
-          to="/profile"
+          to="/about"
           className={({ isActive }) =>
-            isActive ? 'text-green-500 font-semibold' : 'text-gray-700'
+            isActive
+              ? 'text-green-600 font-semibold'
+              : 'text-gray-700 hover:text-green-600'
           }
         >
-          My Profile
+          About Us
         </NavLink>
       </li>
+
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? 'text-green-600 font-semibold'
+              : 'text-gray-700 hover:text-green-600'
+          }
+        >
+          Contact
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/support"
+          className={({ isActive }) =>
+            isActive
+              ? 'text-green-600 font-semibold'
+              : 'text-gray-700 hover:text-green-600'
+          }
+        >
+          Support
+        </NavLink>
+      </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive
+                ? 'text-green-600 font-semibold'
+                : 'text-gray-700 hover:text-green-600'
+            }
+          >
+            My Profile
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
   return (
-    <nav className="backdrop-blur-md bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 shadow-md border-b border-white/50">
-      <div className="navbar max-w-7xl mx-auto">
-        <div className="navbar-start">
-          {/* mobile menu */}
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden text-green-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-white/70 backdrop-blur-lg rounded-box  mt-3 w-52 p-2 shadow-lg border border-white/40"
-            >
-              {links}
-            </ul>
-          </div>
+    <nav className="bg-[#f1efec] backdrop-blur-xl shadow-sm border-b border-gray-200 w-full">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/">
+          <img src="/logo.png" alt="Logo" className="w-32" />
+        </Link>
 
-          {/* logo */}
-          <Link to="/">
-            <img className="lg:w-32 w-28" src="/logo.png" alt="Logo" />
-          </Link>
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex space-x-10 text-[17px] font-medium">
+          {navLinks}
+        </ul>
+
+        {/* Right side buttons */}
+        <div className="hidden lg:flex">
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/auth/login"
+              className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
-        {/* center menu */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-4">{links}</ul>
-        </div>
+        {/* Mobile Menu */}
+        <div className="lg:hidden dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost p-0">
+            <svg
+              className="w-8 h-8 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
 
-        {/* right button */}
-        <div className="navbar-end">
-          <div className="login-btn flex gap-5">
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-4 p-4 shadow-lg bg-white rounded-lg w-60 border"
+          >
+            {navLinks}
+
+            <hr className="my-2" />
+
             {user ? (
               <button
                 onClick={handleLogOut}
-                className="btn btn-secondary px-10 "
+                className="px-4 py-2 bg-green-600 text-white rounded-md mt-2 w-full text-center"
               >
                 Logout
               </button>
             ) : (
-              <Link to={'/auth/login'} className="btn btn-primary px-10 ">
+              <Link
+                to="/auth/login"
+                className="px-4 py-2 bg-green-600 text-white rounded-md mt-2 w-full text-center"
+              >
                 Login
               </Link>
             )}
-          </div>
+          </ul>
         </div>
       </div>
     </nav>

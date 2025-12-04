@@ -9,6 +9,9 @@ import PlantDetails from '../Pages/PlantDetails';
 import PrivateRoute from './PrivateRoute';
 import Signup from '../Pages/Signup';
 import Loading from '../Pages/Loading';
+import AboutUs from '../Pages/AboutUs';
+import NotFound from '../Components/HomeComponents/NotFound';
+import SupportPage from '../Pages/SupportPage';
 
 const router = createBrowserRouter([
   {
@@ -29,13 +32,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/plant-details/:id',
-        element: (
-          <PrivateRoute>
-            <PlantDetails />
-          </PrivateRoute>
-        ),
+        element: <PlantDetails />,
         loader: () => fetch('/plants.json'),
         hydrateFallbackElement: <Loading />,
+      },
+      {
+        path: '/about',
+        Component: AboutUs,
+      },
+      {
+        path: '/support',
+        element: <SupportPage />,
       },
 
       {
@@ -64,7 +71,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/*',
-    element: <h2>Error404</h2>,
+    element: <NotFound />,
   },
 ]);
 

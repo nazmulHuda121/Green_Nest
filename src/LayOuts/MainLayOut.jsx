@@ -6,10 +6,10 @@ const MainLayOut = () => {
   return (
     <>
       <div>
-        <header>
+        <header className="sticky top-0 z-50 transition-all duration-300">
           <NavBar />
         </header>
-        <main className="lg:px-0">
+        <main>
           <Outlet />
         </main>
         <footer>

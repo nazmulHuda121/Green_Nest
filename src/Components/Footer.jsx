@@ -1,37 +1,57 @@
 import React from 'react';
-import { BsPinterest } from 'react-icons/bs';
 import { GrInstagram } from 'react-icons/gr';
 import { SiFacebook } from 'react-icons/si';
+import { BsPinterest } from 'react-icons/bs';
 
 const Footer = () => {
   return (
-    <footer className="w-full p-12 bg-gradient-to-b from-green-950 via-black to-green-950">
-      <div className="flex flex-col items-center gap-6">
-        {/* Links */}
-        <nav className="flex flex-wrap gap-8 justify-center">
-          <a className="text-green-200 font-medium hover:text-white hover:underline cursor-pointer transition-all duration-300">
-            About us
-          </a>
-          <a className="text-green-200 font-medium hover:text-white hover:underline cursor-pointer transition-all duration-300">
-            Contact
-          </a>
-          <a className="text-green-200 font-medium hover:text-white hover:underline cursor-pointer transition-all duration-300">
-            Privacy Policy
-          </a>
-        </nav>
-
-        {/* Social Icons */}
-        <div className="flex gap-6 justify-center mt-4">
-          <GrInstagram className="text-3xl text-[#E1306C] hover:text-green-400 hover:scale-125 transition-all duration-300 cursor-pointer" />
-          <SiFacebook className="text-3xl text-[#1877F2] hover:text-green-400 hover:scale-125 transition-all duration-300 cursor-pointer" />
-          <BsPinterest className="text-3xl text-[#E60023] hover:text-green-400 hover:scale-125 transition-all duration-300 cursor-pointer" />
+    <footer className="bg-[#e1dcd7] border-t">
+      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
+        {/* Logo + About */}
+        <div>
+          <img src="/logo.png" alt="Logo" className="w-40 mb-4" />
+          <p className="text-gray-700 text-sm">
+            GreenNest — your trusted eco-store for natural, sustainable, and
+            organic lifestyle products.
+          </p>
         </div>
 
-        {/* Copyright */}
-        <p className="mt-6 text-gray-400 text-center">
-          Copyright © {new Date().getFullYear()} - GreenNest. All rights
-          reserved.
-        </p>
+        {/* Company */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Company</h3>
+          <ul className="space-y-2 text-[15px]">
+            <li className="hover:text-green-700 cursor-pointer">About Us</li>
+            <li className="hover:text-green-700 cursor-pointer">Contact</li>
+            <li className="hover:text-green-700 cursor-pointer">Blog</li>
+          </ul>
+        </div>
+
+        {/* Support */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Support</h3>
+          <ul className="space-y-2 text-[15px]">
+            <li className="hover:text-green-700 cursor-pointer">Help Center</li>
+            <li className="hover:text-green-700 cursor-pointer">
+              Shipping Info
+            </li>
+            <li className="hover:text-green-700 cursor-pointer">Track Order</li>
+            <li className="hover:text-green-700 cursor-pointer">FAQs</li>
+          </ul>
+        </div>
+
+        {/* Social */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+          <div className="flex gap-5">
+            <GrInstagram className="text-2xl hover:text-green-700 cursor-pointer" />
+            <SiFacebook className="text-2xl hover:text-green-700 cursor-pointer" />
+            <BsPinterest className="text-2xl hover:text-green-700 cursor-pointer" />
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t py-5 text-center text-gray-600 text-sm">
+        © {new Date().getFullYear()} GreenNest — All Rights Reserved.
       </div>
     </footer>
   );
